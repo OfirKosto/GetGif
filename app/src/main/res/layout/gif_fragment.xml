@@ -27,7 +27,7 @@
             android:text="@string/share_gif"
             android:id="@+id/gif_screen_share_gif_btn"
             android:textAllCaps="false"/>
-        
+
         <Space
             android:layout_width="0dp"
             android:layout_height="match_parent"
