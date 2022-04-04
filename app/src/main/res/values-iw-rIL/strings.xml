@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GetGif</string>
+    <string name="search_gif">חפש gif</string>
+    <string name="save_gif">שמור gif</string>
+    <string name="share_gif">שתף gif</string>
+</resources>
