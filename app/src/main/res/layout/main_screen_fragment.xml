@@ -23,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="9"
+            android:text=""
             android:hint="@string/search_gif"
             android:id="@+id/main_screen_search_editText"/>
     </LinearLayout>

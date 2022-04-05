@@ -15,10 +15,11 @@ object GifApiUtil {
     private const val RATING: String  = "g"
     private const val LIMIT: Int = 40
 
-    private val retrofit: Retrofit = Retrofit.Builder().baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create()).build()
-
-    private val retroService = retrofit.create(IGifApi::class.java)
+    private val retroService: IGifApi by lazy {
+        Retrofit.Builder().baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build().create(IGifApi::class.java)
+    }
 
     fun getTrendingGifs(callback: Callback<DataResult>){
         val gifsCall: Call<DataResult> = retroService.getTrendingGifs(LIMIT, RATING, API_KEY)
