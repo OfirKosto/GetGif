@@ -10,25 +10,25 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object GifApiUtil {
 
-    private const val BASE_URL: String = "api.giphy.com/v1/gifs/"
+    private const val BASE_URL: String = "https://api.giphy.com/v1/gifs/"
     private const val API_KEY: String  = "Zz7XnA0RZzJJetQAQv1e2c7ErivA9F5u"
     private const val RATING: String  = "g"
     private const val LIMIT: Int = 40
 
-    private val retroService: IGifApi by lazy {
+    val retroService: IGifApi by lazy {
         Retrofit.Builder().baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build().create(IGifApi::class.java)
     }
 
-    fun getTrendingGifs(callback: Callback<DataResult>){
-        val gifsCall: Call<DataResult> = retroService.getTrendingGifs(LIMIT, RATING, API_KEY)
-        gifsCall.enqueue(callback)
-    }
-
-    fun getGifsByName(nameToSearch: String, callback: Callback<DataResult>){
-        val gifsCall: Call<DataResult> = retroService.getGifsByName(nameToSearch, LIMIT, RATING, API_KEY)
-        gifsCall.enqueue(callback)
-    }
+//    suspend fun getTrendingGifs(callback: Callback<DataResult>){
+//        val gifsCall: Call<DataResult> = retroService.getTrendingGifs(LIMIT, RATING, API_KEY)
+//        gifsCall.enqueue(callback)
+//    }
+//
+//    suspend fun getGifsByName(nameToSearch: String, callback: Callback<DataResult>){
+//        val gifsCall: Call<DataResult> = retroService.getGifsByName(nameToSearch, LIMIT, RATING, API_KEY)
+//        gifsCall.enqueue(callback)
+//    }
 
 }

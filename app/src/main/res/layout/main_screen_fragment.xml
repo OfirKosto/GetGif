@@ -17,7 +17,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:src="@drawable/ic_baseline_search_icon"
-            android:id="@+id/main_screen_search_imageView"/>
+            android:id="@+id/main_screen_search_imageViewButton"/>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:layout_width="match_parent"

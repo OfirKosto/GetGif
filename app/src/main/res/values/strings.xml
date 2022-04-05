@@ -3,4 +3,6 @@
     <string name="search_gif">Search gif</string>
     <string name="save_gif">Save gif</string>
     <string name="share_gif">Share gif</string>
+    <string name="error_get_data_msg">Error retrieving data, please try again.</string>
+    <string name="io_exeption_msg">IOExeption, you might not have a internet connection</string>
 </resources>
