@@ -12,6 +12,17 @@ import kotlinx.android.synthetic.main.gif_card.view.*
 
 class GifAdapter(var dataObjectsList: List<DataObject>) : RecyclerView.Adapter<GifAdapter.GifViewHolder>() {
 
+    private lateinit var onClickListener : OnGifClickListener
+
+    interface OnGifClickListener{
+        fun onGifClick(dataObject: DataObject)
+    }
+
+    fun setOnGifClickListener(listener: OnGifClickListener)
+    {
+        onClickListener = listener
+    }
+
     fun setList(list: List<DataObject>){dataObjectsList = list}
 
     class GifViewHolder(val view: View) : RecyclerView.ViewHolder(view)
@@ -26,8 +37,12 @@ class GifAdapter(var dataObjectsList: List<DataObject>) : RecyclerView.Adapter<G
     override fun onBindViewHolder(holder: GifViewHolder, position: Int) {
 
         val data = dataObjectsList[position]
-        Glide.with(holder.itemView.context).load(data.images.originalImage).into(holder.view.gif_card_imageView)
+        Glide.with(holder.itemView.context).load(data.images.originalImage.url)
+            .placeholder(R.drawable.ic_baseline_photo_place).into(holder.view.gif_card_imageView)
 
+        holder.itemView.setOnClickListener(){
+            onClickListener.onGifClick(dataObjectsList[position])
+        }
     }
 
     override fun getItemCount(): Int = dataObjectsList.size

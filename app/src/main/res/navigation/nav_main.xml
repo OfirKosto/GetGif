@@ -9,5 +9,13 @@
         android:id="@+id/mainScreenFragment"
         android:name="com.example.getgif.view.MainScreenFragment"
         android:label="main_screen_fragment"
-        tools:layout="@layout/main_screen_fragment" />
+        tools:layout="@layout/main_screen_fragment" >
+        <action
+            android:id="@+id/action_mainScreenFragment_to_gifScreenFragment"
+            app:destination="@id/gifScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gifScreenFragment"
+        android:name="com.example.getgif.view.GifScreenFragment"
+        android:label="GifScreenFragment" />
 </navigation>

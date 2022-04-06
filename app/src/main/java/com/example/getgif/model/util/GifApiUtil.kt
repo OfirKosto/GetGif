@@ -20,15 +20,4 @@ object GifApiUtil {
             .addConverterFactory(GsonConverterFactory.create())
             .build().create(IGifApi::class.java)
     }
-
-//    suspend fun getTrendingGifs(callback: Callback<DataResult>){
-//        val gifsCall: Call<DataResult> = retroService.getTrendingGifs(LIMIT, RATING, API_KEY)
-//        gifsCall.enqueue(callback)
-//    }
-//
-//    suspend fun getGifsByName(nameToSearch: String, callback: Callback<DataResult>){
-//        val gifsCall: Call<DataResult> = retroService.getGifsByName(nameToSearch, LIMIT, RATING, API_KEY)
-//        gifsCall.enqueue(callback)
-//    }
-
 }

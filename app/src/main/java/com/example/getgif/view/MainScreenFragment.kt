@@ -55,11 +55,20 @@ class MainScreenFragment : Fragment() {
             viewModel.getGifsByName(searchEditText.text.toString())
         }
 
-
         recyclerView = viewRoot.findViewById<RecyclerView>(R.id.main_screen_recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.setHasFixedSize(true)
 
+        adapter.setOnGifClickListener(object : GifAdapter.OnGifClickListener{
+            override fun onGifClick(dataObject: DataObject) {
+                TODO("Not yet implemented")
+
+                val bundle: Bundle = Bundle()
+                bundle.putString("url", dataObject.images.originalImage.url)
+
+
+            }
+        })
         recyclerView.adapter = adapter
     }
 
@@ -69,6 +78,7 @@ class MainScreenFragment : Fragment() {
             dataObjectsList.addAll(list)
             adapter.setList(dataObjectsList)
             adapter.notifyDataSetChanged()
+           recyclerView.smoothScrollToPosition(0)
         })
 
         viewModel.errorLiveData.observe(viewLifecycleOwner, Observer { errorMsg ->

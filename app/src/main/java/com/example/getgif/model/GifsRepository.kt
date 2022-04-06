@@ -1,12 +1,6 @@
 package com.example.getgif.model
 
-import com.example.getgif.model.dataclasses.DataResult
-import com.example.getgif.model.dataclasses.Gif
-import com.example.getgif.model.interfaces.IResponseListener
 import com.example.getgif.model.util.GifApiUtil
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 object GifsRepository {
 
