@@ -1,5 +1,6 @@
 package com.example.getgif.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +10,11 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.getgif.R
 import com.example.getgif.model.dataclasses.DataObject
-import com.example.getgif.model.dataclasses.Gif
 import com.example.getgif.view.adapters.GifAdapter
 import com.google.android.material.snackbar.Snackbar
 
@@ -27,7 +26,6 @@ class MainScreenFragment : Fragment() {
     private lateinit var searchEditText : EditText
     private lateinit var searchImageViewButton : ImageView
     private lateinit var adapter : GifAdapter
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,15 +57,15 @@ class MainScreenFragment : Fragment() {
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.setHasFixedSize(true)
 
-        adapter.setOnGifClickListener(object : GifAdapter.OnGifClickListener{
+        adapter.setOnGifClickListener(object: GifAdapter.OnGifClickListener{
             override fun onGifClick(dataObject: DataObject) {
-                TODO("Not yet implemented")
-
                 val bundle: Bundle = Bundle()
                 bundle.putString("url", dataObject.images.originalImage.url)
 
-
+                NavHostFragment.findNavController(this@MainScreenFragment)
+                    .navigate(R.id.action_mainScreenFragment_to_gifScreenFragment, bundle)
             }
+
         })
         recyclerView.adapter = adapter
     }

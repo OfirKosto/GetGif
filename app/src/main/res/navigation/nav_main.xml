@@ -17,5 +17,9 @@
     <fragment
         android:id="@+id/gifScreenFragment"
         android:name="com.example.getgif.view.GifScreenFragment"
-        android:label="GifScreenFragment" />
+        android:label="GifScreenFragment" >
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
 </navigation>
