@@ -6,4 +6,5 @@
     <string name="share_gif">שתף gif</string>
     <string name="error_get_data_msg">שגיאה בשליפת המידע, בבקשה נסה שוב.</string>
     <string name="io_exeption_msg">שגיאה,  יכול להיות שאין לך חיבור לאינטרנט.</string>
+    <string name="share_via">שתף באמצעות</string>
 </resources>
