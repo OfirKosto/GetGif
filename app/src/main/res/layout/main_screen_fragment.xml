@@ -19,12 +19,12 @@
             android:src="@drawable/ic_baseline_search_icon"
             android:id="@+id/main_screen_search_imageViewButton"/>
 
-        <androidx.appcompat.widget.AppCompatEditText
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="9"
             android:text=""
-            android:hint="@string/search_gif"
+            android:hint="@string/search"
             android:id="@+id/main_screen_search_editText"/>
     </LinearLayout>
 

@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name">GetGif</string>
-    <string name="search_gif">Search gif</string>
-    <string name="save_gif">Save gif</string>
-    <string name="share_gif">Share gif</string>
+    <string name="search">Search</string>
+    <string name="download">Download</string>
+    <string name="share">Share</string>
     <string name="error_get_data_msg">Error retrieving data, please try again.</string>
-    <string name="io_exeption_msg">IOExeption, you might not have a internet connection</string>
-    <string name="share_via">Share Via</string>
+    <string name="io_exeption_msg">IOExeption, you might not have a internet connection.</string>
+    <string name="share_via">Share Via:</string>
+    <string name="download_finished">Download Finished!</string>
+    <string name="error_sharing">Error sharing, please try again.</string>
+    <string name="error_saving">Error saving, please try again.</string>
+    <string name="error_loading_gif">Error loading gif, please try again.</string>
+    <string name="http_exeption_msg">HttpException, unexpected response.</string>
+    <string name="no_results">No results  for this serch .</string>
 </resources>

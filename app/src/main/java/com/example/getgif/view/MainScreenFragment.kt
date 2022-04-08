@@ -26,6 +26,7 @@ class MainScreenFragment : Fragment() {
     private lateinit var searchEditText : EditText
     private lateinit var searchImageViewButton : ImageView
     private lateinit var adapter : GifAdapter
+    private var lastSearchString: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,10 +48,33 @@ class MainScreenFragment : Fragment() {
 
 
     private fun initUI(viewRoot: View) {
+        if(lastSearchString.equals(""))
+        {
+            viewModel.getTrendingGifs(viewRoot)
+        }
+
         searchEditText = viewRoot.findViewById<EditText>(R.id.main_screen_search_editText)
         searchImageViewButton = viewRoot.findViewById<ImageView>(R.id.main_screen_search_imageViewButton)
         searchImageViewButton.setOnClickListener {
-            viewModel.getGifsByName(searchEditText.text.toString())
+            val stringToSearch: String = searchEditText.text.toString()
+            if(!lastSearchString.equals(stringToSearch))
+            {
+                if(!stringToSearch.equals(""))
+                {
+                    dataObjectsList.clear()
+                    adapter.setList(dataObjectsList)
+                    adapter.notifyDataSetChanged()
+                    viewModel.getGifsByName(viewRoot, stringToSearch)
+                }
+                else
+                {
+                    dataObjectsList.clear()
+                    adapter.setList(dataObjectsList)
+                    adapter.notifyDataSetChanged()
+                    viewModel.getTrendingGifs(viewRoot)
+                }
+            }
+            lastSearchString = stringToSearch
         }
 
         recyclerView = viewRoot.findViewById<RecyclerView>(R.id.main_screen_recyclerView)
@@ -77,6 +101,10 @@ class MainScreenFragment : Fragment() {
             adapter.setList(dataObjectsList)
             adapter.notifyDataSetChanged()
            recyclerView.smoothScrollToPosition(0)
+            if(list.isEmpty())
+            {
+                Snackbar.make(viewRoot, viewRoot.resources.getString(R.string.no_results), Snackbar.LENGTH_LONG).show()
+            }
         })
 
         viewModel.errorLiveData.observe(viewLifecycleOwner, Observer { errorMsg ->

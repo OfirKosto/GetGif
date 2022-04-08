@@ -21,12 +21,12 @@
         android:orientation="horizontal"
         android:weightSum="10">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:textSize="20sp"
-            android:text="@string/share_gif"
+            android:text="@string/share"
             android:id="@+id/gif_fragment_share_gif_btn"
             android:textAllCaps="false"/>
 
@@ -35,12 +35,12 @@
             android:layout_height="match_parent"
             android:layout_weight="2"/>
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:textSize="20sp"
-            android:text="@string/save_gif"
+            android:text="@string/download"
             android:id="@+id/gif_fragment_save_gif_btn"
             android:textAllCaps="false"/>
 

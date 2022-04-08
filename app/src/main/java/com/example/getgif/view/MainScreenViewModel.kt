@@ -1,9 +1,11 @@
 package com.example.getgif.view
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.getgif.R
 import com.example.getgif.model.GifsRepository
 import com.example.getgif.model.dataclasses.DataObject
 import kotlinx.coroutines.launch
@@ -20,11 +22,7 @@ class MainScreenViewModel : ViewModel() {
 
     val errorLiveData: LiveData<String> get() = _errorLiveData
 
-    init {
-        getTrendingGifs()
-    }
-
-    fun getTrendingGifs(){
+    fun getTrendingGifs(viewRoot: View){
         viewModelScope.launch {
             val response =
                 try {
@@ -32,12 +30,12 @@ class MainScreenViewModel : ViewModel() {
                 }
                 catch (ex: IOException)
                 {
-                    _errorLiveData.postValue(ex.message)
+                    _errorLiveData.postValue(viewRoot.resources.getString(R.string.io_exeption_msg))
                     return@launch
                 }
                 catch (ex: HttpException)
                 {
-                    _errorLiveData.postValue(ex.message)
+                    _errorLiveData.postValue(viewRoot.resources.getString(R.string.http_exeption_msg))
                     return@launch
                 }
 
@@ -45,15 +43,10 @@ class MainScreenViewModel : ViewModel() {
             {
                     _gifsList.postValue(response.body()!!.dataObjectList)
             }
-            else
-            {
-                //TODO ADD MESSAGE
-//                _errorLiveData.postValue(()
-            }
         }
     }
 
-    fun getGifsByName(name: String) {
+    fun getGifsByName(viewRoot: View, name: String) {
         viewModelScope.launch {
             val response =
                 try {
@@ -61,23 +54,18 @@ class MainScreenViewModel : ViewModel() {
                 }
                 catch (ex: IOException)
                 {
-                    _errorLiveData.postValue(ex.message)
+                    _errorLiveData.postValue(viewRoot.resources.getString(R.string.io_exeption_msg))
                     return@launch
                 }
                 catch (ex: HttpException)
                 {
-                    _errorLiveData.postValue(ex.message)
+                    _errorLiveData.postValue(viewRoot.resources.getString(R.string.http_exeption_msg))
                     return@launch
                 }
 
                 if(response.isSuccessful && response.body()!= null)
                 {
                         _gifsList.postValue(response.body()!!.dataObjectList)
-                }
-                else
-                {
-                    //TODO ADD MESSAGE
-//                _errorLiveData.postValue(()
                 }
         }
     }
