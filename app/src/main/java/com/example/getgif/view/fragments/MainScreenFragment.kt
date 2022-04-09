@@ -1,6 +1,5 @@
-package com.example.getgif.view
+package com.example.getgif.view.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.getgif.R
 import com.example.getgif.model.dataclasses.DataObject
+import com.example.getgif.view.viewmodels.MainScreenViewModel
 import com.example.getgif.view.adapters.GifAdapter
 import com.google.android.material.snackbar.Snackbar
 

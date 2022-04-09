@@ -1,4 +1,4 @@
-package com.example.getgif.view
+package com.example.getgif.view.fragments
 
 
 import android.Manifest
@@ -25,6 +25,7 @@ import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.getgif.R
+import com.example.getgif.view.viewmodels.GifScreenViewModel
 import com.google.android.material.snackbar.Snackbar
 import java.io.File
 

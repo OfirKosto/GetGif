@@ -1,4 +1,4 @@
-package com.example.getgif.view
+package com.example.getgif.view.viewmodels
 
 import android.view.View
 import androidx.lifecycle.LiveData
@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.getgif.R
-import com.example.getgif.model.GifsRepository
+import com.example.getgif.model.repositories.GifsRepository
 import com.example.getgif.model.dataclasses.DataObject
 import kotlinx.coroutines.launch
 import retrofit2.HttpException

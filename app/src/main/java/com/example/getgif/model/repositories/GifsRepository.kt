@@ -1,4 +1,4 @@
-package com.example.getgif.model
+package com.example.getgif.model.repositories
 
 import android.net.Uri
 import android.os.Environment

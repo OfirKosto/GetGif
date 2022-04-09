@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainScreenFragment"
-        android:name="com.example.getgif.view.MainScreenFragment"
+        android:name="com.example.getgif.view.fragments.MainScreenFragment"
         android:label="main_screen_fragment"
         tools:layout="@layout/main_screen_fragment" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/gifScreenFragment"
-        android:name="com.example.getgif.view.GifScreenFragment"
+        android:name="com.example.getgif.view.fragments.GifScreenFragment"
         android:label="GifScreenFragment" >
         <argument
             android:name="url"
