@@ -12,4 +12,6 @@
     <string name="error_loading_gif">Error loading gif, please try again.</string>
     <string name="http_exeption_msg">HttpException, unexpected response.</string>
     <string name="no_results">No results  for this serch .</string>
+    <string name="back">Back</string>
+    <string name="no_permissions">No permissions!</string>
 </resources>

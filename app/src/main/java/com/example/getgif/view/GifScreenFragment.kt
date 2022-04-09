@@ -1,18 +1,23 @@
 package com.example.getgif.view
 
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
+import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -30,8 +35,10 @@ class GifScreenFragment : Fragment() {
     private lateinit var gifImageView: ImageView
     private lateinit var shareButton: Button
     private lateinit var saveButton: Button
+    private lateinit var backButton: Button
     private lateinit var url: String
     private lateinit var drawable: GifDrawable
+    private var requestPermissionLauncher: ActivityResultLauncher<String>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +49,6 @@ class GifScreenFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(GifScreenViewModel::class.java)
 
 
-
         val bundle = arguments
         if(bundle != null)
         {
@@ -51,8 +57,14 @@ class GifScreenFragment : Fragment() {
                 url = bundle.getString("url")!!
             }
         }
-
+        initLaunchers(viewRoot)
         initUI(viewRoot)
+
+        if (ActivityCompat.checkSelfPermission(viewRoot.context,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        {
+            requestPermissionLauncher!!.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
 
         return viewRoot
     }
@@ -67,18 +79,37 @@ class GifScreenFragment : Fragment() {
         shareButton = viewRoot.findViewById(R.id.gif_fragment_share_gif_btn)
         shareButton.setOnClickListener(object :View.OnClickListener{
             override fun onClick(p0: View?) {
-                shareGif(viewRoot)
+                if (ActivityCompat.checkSelfPermission(viewRoot.context,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+                {
+                    requestPermissionLauncher!!.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                }
+                else
+                {
+                    shareGif(viewRoot)
+                }
             }
         })
 
         saveButton = viewRoot.findViewById(R.id.gif_fragment_save_gif_btn)
         saveButton.setOnClickListener(object :View.OnClickListener{
             override fun onClick(p0: View?) {
-                saveGif(viewRoot)
+                if (ActivityCompat.checkSelfPermission(viewRoot.context,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+                {
+                    requestPermissionLauncher!!.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                }
+                else
+                {
+                    saveGif(viewRoot)
+                }
             }
         })
 
-
+        backButton = viewRoot.findViewById(R.id.favorites_articles_fragment_back_btn)
+        backButton.setOnClickListener(View.OnClickListener { v: View? ->
+            NavHostFragment.findNavController(this).popBackStack()
+        })
     }
 
     private fun initImageViewAndDrawable(viewRoot: View) {
@@ -122,6 +153,8 @@ class GifScreenFragment : Fragment() {
             shareIntent.type = "image/gif"
 
             shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
+            shareIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             startActivity(Intent.createChooser(shareIntent, resources.getString(R.string.share_via)))
         }
         else
@@ -144,5 +177,13 @@ class GifScreenFragment : Fragment() {
         }
     }
 
+
+    private fun initLaunchers(viewRoot: View) {
+        requestPermissionLauncher = registerForActivityResult(RequestPermission()) { result ->
+            if (!result!!) {
+                Snackbar.make(viewRoot, viewRoot.resources.getString(R.string.no_permissions), Snackbar.LENGTH_LONG).show()
+            }
+        }
+    }
 
 }

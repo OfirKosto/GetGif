@@ -25,15 +25,15 @@ object GifsRepository {
     fun getFileUriForGif(viewRoot: View, gifDrawable: GifDrawable?) :Uri? {
         if(gifDrawable != null)
         {
-            val baseDir: String = Environment.getExternalStorageDirectory().getAbsolutePath()
-            val fileName =  "sharingGif.gif"
+            val baseDir = viewRoot.context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
+            val fileName =  "GIF.gif"
 
-            val sharingGifFile = File(baseDir, fileName)
-            gifDrawableToFile(gifDrawable, sharingGifFile);
+            val gifFile = File(baseDir, fileName)
+            gifDrawableToFile(gifDrawable, gifFile);
 
             val uri: Uri = FileProvider.getUriForFile(
                 viewRoot.context!!, BuildConfig.APPLICATION_ID + ".provider",
-                sharingGifFile
+                gifFile
             )
 
             return uri
@@ -47,8 +47,19 @@ object GifsRepository {
     fun getFileForGif(viewRoot: View, gifDrawable: GifDrawable?) :File? {
         if(gifDrawable != null)
         {
-            val directory = File(Environment.getExternalStorageDirectory(), "/" +
-                    viewRoot.resources.getString(R.string.app_name))
+
+            val downloadsDirectory = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).absolutePath)
+
+            if(!downloadsDirectory.exists())
+            {
+                if(!downloadsDirectory.mkdir())
+                {
+                    return null
+                }
+            }
+
+            val directory = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "/" +
+            viewRoot.resources.getString(R.string.app_name))
 
             if(!directory.exists())
             {
@@ -60,10 +71,10 @@ object GifsRepository {
 
             val fileName = Calendar.getInstance().timeInMillis.toString() + ".gif"
 
-            val sharingGifFile = File(directory, fileName)
-            gifDrawableToFile(gifDrawable, sharingGifFile)
+            val gifFile = File(directory, fileName)
+            gifDrawableToFile(gifDrawable, gifFile)
 
-            return sharingGifFile
+            return gifFile
         }
         else
         {

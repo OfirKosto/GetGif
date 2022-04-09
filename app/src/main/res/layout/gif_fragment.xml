@@ -8,41 +8,56 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="9"
-        android:layout_margin="30dp"
+        android:layout_weight="7"
+        android:layout_margin="20dp"
         android:scaleType="fitCenter"
         android:id="@+id/gif_fragment_imageView"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:layout_margin="30dp"
-        android:orientation="horizontal"
-        android:weightSum="10">
+        android:orientation="vertical"
+        android:weightSum="18">
 
         <com.google.android.material.button.MaterialButton
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_width="160dp"
+            android:layout_height="0dp"
+            android:layout_weight="5"
             android:textSize="20sp"
             android:text="@string/share"
             android:id="@+id/gif_fragment_share_gif_btn"
+            android:layout_gravity="center"
             android:textAllCaps="false"/>
 
         <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"/>
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
         <com.google.android.material.button.MaterialButton
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_width="160dp"
+            android:layout_height="0dp"
+            android:layout_weight="5"
             android:textSize="20sp"
             android:text="@string/download"
+            android:layout_gravity="center"
             android:id="@+id/gif_fragment_save_gif_btn"
             android:textAllCaps="false"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:layout_gravity="center"
+            android:text="@string/back"
+            android:id="@+id/favorites_articles_fragment_back_btn"/>
 
     </LinearLayout>
 
