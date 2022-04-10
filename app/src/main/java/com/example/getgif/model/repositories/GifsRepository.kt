@@ -29,7 +29,7 @@ object GifsRepository {
             val fileName =  "GIF.gif"
 
             val gifFile = File(baseDir, fileName)
-            gifDrawableToFile(gifDrawable, gifFile);
+            gifDrawableToFile(gifDrawable, gifFile)
 
             val uri: Uri = FileProvider.getUriForFile(
                 viewRoot.context!!, BuildConfig.APPLICATION_ID + ".provider",
@@ -93,11 +93,11 @@ object GifsRepository {
             }
         catch (ex: FileNotFoundException)
         {
-            ex.printStackTrace();
+            ex.printStackTrace()
         }
         catch (ex: IOException)
         {
-           ex.printStackTrace();
+           ex.printStackTrace()
         }
     }
 

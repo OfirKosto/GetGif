@@ -63,7 +63,7 @@ class MainScreenFragment : Fragment() {
                 if ((keyEvent != null && (keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
                     searchImageViewButton.callOnClick()
                 }
-                return false;
+                return false
             }
         })
 
