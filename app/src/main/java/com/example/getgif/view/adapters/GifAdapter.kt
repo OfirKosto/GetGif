@@ -37,7 +37,7 @@ class GifAdapter(var dataObjectsList: List<DataObject>) : RecyclerView.Adapter<G
     override fun onBindViewHolder(holder: GifViewHolder, position: Int) {
 
         val data = dataObjectsList[position]
-        Glide.with(holder.itemView.context).load(data.images.originalImage.url)
+        Glide.with(holder.itemView.context).load(data.images.downsizedImage.url)
             .placeholder(R.drawable.ic_baseline_photo_place).into(holder.view.gif_card_imageView)
 
         holder.itemView.setOnClickListener(){

@@ -25,7 +25,9 @@
             android:layout_weight="9"
             android:text=""
             android:hint="@string/search"
-            android:id="@+id/main_screen_search_editText"/>
+            android:id="@+id/main_screen_search_editText"
+            android:singleLine="true"
+            android:imeOptions="actionDone"/>
     </LinearLayout>
 
 

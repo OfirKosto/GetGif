@@ -117,6 +117,7 @@ class GifScreenFragment : Fragment() {
         Glide.with(viewRoot)
             .asGif()
             .load(url)
+            .placeholder(R.drawable.ic_baseline_photo_place)
             .addListener(object : RequestListener<GifDrawable> {
                 override fun onLoadFailed(
                     e: GlideException?,
