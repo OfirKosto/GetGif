@@ -13,7 +13,6 @@ class MusicService : Service(), MediaPlayer.OnPreparedListener{
     override fun onCreate() {
         super.onCreate()
         mediaPlayer.setOnPreparedListener(this)
-        mediaPlayer.reset()
     }
 
     override fun onBind(p0: Intent?): IBinder? = null
